@@ -1,13 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React, { useEffect } from 'react';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import MoviesList from './src/components/MoviesList';
+import { get_movies_list } from './src/utilities/server_req';
 export default function App() {
+  // useEffect(() => {
+  //   get_movies_list(2)
+  //   .then(res => {
+  //     console.log(res.data)
+  //   })
+  // }, [])
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <MoviesList />
+    </SafeAreaView>
   );
 }
 
@@ -17,5 +24,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
 });
