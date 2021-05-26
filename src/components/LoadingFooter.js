@@ -5,11 +5,11 @@ const LoadingFooter = ({ showUp = false }) => {
     return (
         <View style={{
             width: '100%',
-            backgroundColor: 'rgba(0,0,0,0.5)',
+            // backgroundColor: 'rgba(0,0,0,0.5)',
             alignSelf: 'center',
             height: 50
         }} >
-            <ActivityIndicator color="white" animating size={40} />
+            <ActivityIndicator color="DarkGrey" animating size={40} />
         </View>
     )
 }
