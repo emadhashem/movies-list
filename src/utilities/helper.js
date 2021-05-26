@@ -4,6 +4,6 @@ export function make_it_unique(id = "") {
 }
 
 export function custom_str(s = "") {
-    if(s.length >= 150) return s.substring(0, 150) + "..."
+    if(s.length > 150) return s.substring(0, 150) + "..."
     return s;
 }
