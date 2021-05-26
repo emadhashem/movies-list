@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 const Movie = ({ id, overView, date, poster }) => {
@@ -11,6 +11,6 @@ const Movie = ({ id, overView, date, poster }) => {
     )
 }
 
-export default Movie
+export default React.memo(Movie)
 
 const styles = StyleSheet.create({})

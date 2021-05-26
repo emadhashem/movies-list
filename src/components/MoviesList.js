@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 import { get_movies_list } from '../utilities/server_req'
 import LoadingFooter from './LoadingFooter'
 import Movie from './Movie'
 import uuid from 'react-native-uuid';
-
 const MoviesList = () => {
     const [curPage, setcurPage] = useState(1)
     const [data, setdata] = useState([])
     const [loading, setloading] = useState(false)
 
-
     useEffect(() => {
-        // setdata([])
         get_movies_of_cur_page()
         return () => {
             setdata([])
@@ -34,7 +31,7 @@ const MoviesList = () => {
                     date: item.release_date,
                     poster: item.poster_path
                 }))
-                return [...cur_data, ...arr_of_data]
+                return [...cur_data.concat(arr_of_data)]
             })
             setloading(false)
 
@@ -42,25 +39,37 @@ const MoviesList = () => {
             console.log(e.message, 'from get cur movies')
         }
     }
+    // using usecallback hooks help me to increase performance cuz it's a big list
+    const renderItem = useCallback(({ item }) => <Movie {...item} />, [data])
+    const keyExtractor = useCallback(item => uuid.v4(), [])
+
     return (
-        <FlatList
-            style={styles.fList}
-            data={data}
-            renderItem={({ item }) => <Movie {...item} />}
-            initialNumToRender = {7}
-            onEndReached={() => get_movies_of_cur_page()}
-            onEndReachedThreshold={.0000000001}
-            ListFooterComponent={() => <LoadingFooter showUp={loading} />}
-            keyExtractor={item => uuid.v4()}
-            maxToRenderPerBatch = {10}
-            updateCellsBatchingPeriod = {50}
-        />
+        <View style = {styles.container} >
+            <FlatList
+                style={styles.fList}
+                data={data}
+                renderItem={renderItem}
+                initialNumToRender={5}
+                onEndReached={get_movies_of_cur_page}
+                onEndReachedThreshold={.3}
+                keyExtractor={keyExtractor}
+                maxToRenderPerBatch={2}
+                updateCellsBatchingPeriod={100}
+                removeClippedSubviews = {true}
+            />
+            <LoadingFooter showUp={loading} />
+        </View>
     )
 }
 
-export default MoviesList
+export default React.memo(MoviesList)
 
 const styles = StyleSheet.create({
+    container : {
+        flex : 1,
+        width : '100%',
+        height : '100%'
+    },
     fList: {
         flex: 1,
         width: '100%',
