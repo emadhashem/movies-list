@@ -29,7 +29,9 @@ Here the links :
 #### Open The terminal in the app directory and run after makeing clone
 <strong>run npm install</strong> 
 
-### if you faced any err with npm install try <strong>yarn install</strong> 
+### if you faced any err with npm install 
+
+try <strong>yarn install</strong> 
 
 ### Then run <strong> expo start </strong>
 
