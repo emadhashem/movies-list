@@ -40,11 +40,11 @@ Here the links :
 </ul>
 
 #### Open The terminal in the app directory and run after makeing clone
-<strong>run npm install</strong> 
+run  ==>  <strong> npm install</strong> 
 
 ### if you faced any err with npm install 
 
-try <strong>yarn install</strong> 
+try ==> <strong>yarn install</strong> 
 
 ### Then run <strong> expo start </strong>
 
