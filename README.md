@@ -46,7 +46,7 @@ run  ==>  <strong> npm install</strong>
 
 try ==> <strong>yarn install</strong> 
 
-### Then run <strong> expo start </strong>
+### Then run ==> <strong> expo start </strong>
 
 ## open expo app and scan the QR code
 
