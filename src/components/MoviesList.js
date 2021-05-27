@@ -5,15 +5,18 @@ import LoadingFooter from './LoadingFooter'
 import Movie from './Movie'
 import uuid from 'react-native-uuid';
 const MoviesList = () => {
+
     const [curPage, setcurPage] = useState(1)
     const [data, setdata] = useState([])
     const [loading, setloading] = useState(false)
+
     useEffect(() => {
         get_movies_of_cur_page()
         return () => {
             setdata([])
         }
     }, [])
+
     // function to get movies for current page
     async function get_movies_of_cur_page() {
         try {
@@ -22,31 +25,33 @@ const MoviesList = () => {
             const res = await get_movies_list(curPage + 1)
             setdata((cur_data) => {
                 // i just need the title, date, img and overview.
-                // i usded uuid to get unique id cuz some movies have same id.
-                let arr_of_data = res.data.results.map(item => ({
+                // i used uuid to get unique id cuz some movies have same id.
+                let arr_of_new_data = res.data.results.map(item => ({
                     title: item.title,
                     overView: item.overview,
                     date: item.release_date,
                     poster: item.poster_path,
                     id: uuid.v4()
                 }))
-                return [...(cur_data.concat(arr_of_data))]
+                return [...(cur_data.concat(arr_of_new_data))]
             })
             setloading(false)
 
         } catch (e) {
-            console.log(e.message, 'from get cur movies')
+            console.log(e.message, 'some thing wrong in get new movies')
         }
     }
-    function get_movie_id(movie_id = "") {
 
+    function get_movie_id(movie_id = "") {
+        // here is the movie id
     }
+
     // using usecallback hooks help me to increase performance cuz it's a big list.
     const renderItem = useCallback(({ item }) =>
         (<Movie {...item} get_movie_id={get_movie_id} />)
         , [data])
-
     const keyExtractor = useCallback(item => item.id, [])
+
     return (
         <View style={styles.container} >
             <FlatList

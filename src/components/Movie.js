@@ -6,21 +6,22 @@ const Movie = ({ title, overView, date, poster, id, get_movie_id = f => f }) => 
     const uri_of_poster = `http://image.tmdb.org/t/p/w185${poster}`
     // moretext is state for showing all overview or some of it
     const [moreText, setmoreText] = useState(false)
-
     const [curOverView, setcurOverView] = useState(custom_str(overView))
     return (
         <Card containerStyle={styles.conatiner}>
+
             <Card.Image style={styles.img}
                 resizeMode='contain'
                 source={{ uri: uri_of_poster }}>
             </Card.Image>
+            
             <Card.Divider />
-            <View style={styles.film_date_title} >
+
+            <View style={styles.date_title} >
                 <Text style={styles.title} >{title}</Text>
-                <Text style={styles.date} >
-                    {date}
-                </Text>
+                <Text style={styles.date} > {date} </Text>
             </View>
+
             <View style={styles.overView} >
                 <Text style={[styles.overView, { height: (moreText) ? 'auto' : '100%' }]} >
                     {
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     conatiner: {
         flex: 1,
     },
-    film_date_title: {
+    date_title: {
         flex: 1,
         width: '70%',
         justifyContent: 'space-around',
