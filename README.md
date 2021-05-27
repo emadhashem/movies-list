@@ -17,13 +17,21 @@ here some links :
 
 Here the links :
 <ul>
-    <strong>android </strong>
-     :<li> https://play.google.com/store/apps/details?id=host.exp.exponent&hl=ar&gl=US
-    <br/>
-    <strong>ios </strong> :
-     <li>
-        https://apps.apple.com/us/app/expo-go/id982107779
+    <li>
+    <strong>android </strong>:
+    <ul>
+        <li> <a>https://play.google.com/store/apps/details?id=host.exp.exponent&hl=ar&gl=US</a>
+        </li>
+    </ul>
+    <li>
+        <strong>ios </strong> :
+        <ul>
+            <li>
+                <a>https://apps.apple.com/us/app/expo-go/id982107779</a>
+            </li>
+        </ul>
     </li>
+    
 </ul>
 
 #### Open The terminal in the app directory and run after makeing clone
@@ -36,6 +44,11 @@ try <strong>yarn install</strong>
 ### Then run <strong> expo start </strong>
 
 ## open expo app and scan the QR code
+
+### this link will help you to understand how to test the app <a> https://docs.expo.io/guides/testing-on-devices/ </a>
+
+
+
 
 
 
