@@ -8,9 +8,7 @@ const LoadingFooter = ({ showUp = false }) => {
         </View>
     )
 }
-
 export default LoadingFooter
-
 const styles = StyleSheet.create({
     indicator_container: {
         width: '100%',

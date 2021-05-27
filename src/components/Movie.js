@@ -4,11 +4,15 @@ import { Card } from 'react-native-elements'
 import { custom_str } from '../utilities/helper'
 const Movie = ({ title, overView, date, poster, id, get_movie_id = f => f }) => {
     const uri_of_poster = `http://image.tmdb.org/t/p/w185${poster}`
+    // moretext is state for showing all overview or some of it
     const [moreText, setmoreText] = useState(false)
-    const [showedText, setshowedText] = useState(custom_str(overView))
+
+    const [curOverView, setcurOverView] = useState(custom_str(overView))
     return (
         <Card containerStyle={styles.conatiner}>
-            <Card.Image source={{ uri: uri_of_poster }}>
+            <Card.Image style={styles.img}
+                resizeMode='contain'
+                source={{ uri: uri_of_poster }}>
             </Card.Image>
             <Card.Divider />
             <View style={styles.film_date_title} >
@@ -20,15 +24,15 @@ const Movie = ({ title, overView, date, poster, id, get_movie_id = f => f }) => 
             <View style={styles.overView} >
                 <Text style={[styles.overView, { height: (moreText) ? 'auto' : '100%' }]} >
                     {
-                        showedText
+                        curOverView
                     }
                     {
-                        (!moreText) &&
+                        (!moreText && custom_str(overView) !== overView) &&
                         (<TouchableOpacity
                             onPress={() => {
                                 get_movie_id(id)
                                 setmoreText(true)
-                                setshowedText(overView)
+                                setcurOverView(overView)
                             }}
                             style={styles.udr_btn_conatiner} >
                             <Text style={styles.udr_btn} >Show More</Text>
@@ -40,7 +44,7 @@ const Movie = ({ title, overView, date, poster, id, get_movie_id = f => f }) => 
                             onPress={() => {
                                 get_movie_id(id)
                                 setmoreText(false)
-                                setshowedText(custom_str(overView))
+                                setcurOverView(custom_str(overView))
                             }}
                             style={styles.udr_btn_conatiner} >
                             <Text style={styles.udr_btn} >Show Less</Text>
@@ -65,6 +69,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignSelf: 'center',
         alignItems: 'center'
+    },
+    img: {
+        marginBottom: 15
     },
     title: {
         fontWeight: 'bold',
