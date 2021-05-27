@@ -8,7 +8,7 @@ const Movie = ({ title, overView, date, poster, id, get_movie_id = f => f }) => 
     const [showedText, setshowedText] = useState(custom_str(overView))
     return (
         <Card containerStyle={styles.conatiner}>
-            <Card.Image source={{ uri: `http://image.tmdb.org/t/p/w185${poster}` }}>
+            <Card.Image source={{ uri: uri_of_poster }}>
             </Card.Image>
             <Card.Divider />
             <View style={styles.film_date_title} >
